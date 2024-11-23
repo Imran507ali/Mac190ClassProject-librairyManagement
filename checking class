@@ -1,0 +1,39 @@
+
+    import java.io.BufferedReader;
+    import java.io.FileNotFoundException;
+    import java.io.FileReader;
+    import java.io.IOException;
+import java.util.Scanner;
+    public class Checking {
+
+        public static void main(String[] args) throws IOException {
+
+            BufferedReader reader;
+            try {
+                reader = new BufferedReader(new FileReader("EMPLID_data"));
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            // Create a scanner object to get user input
+
+            Scanner scanner = new Scanner(System.in);
+
+            // Prompt user to enter their ID
+            System.out.print("Enter your LaGuardia EMPLID number: ");
+            String userId = scanner.nextLine();
+
+            // Check if the ID exists in the database
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.trim().equals(userId)) {
+                    System.out.println("ID exists in the database. Access granted.");
+                }
+                else {
+                    System.out.println("ID not found in the database. Access denied.");
+
+                }
+            }
+        }
+
+}
